@@ -1,6 +1,8 @@
 <?php
 //error_reporting(0);
 include "griddata_dbcon.php";
+	$referer = $_SERVER['HTTP_REFERER'];
+	$referer0 = str_replace("&mode=edit", "&mode=view", $referer);
 	$category = $_POST['category'];
 	if (!$category) error("カテゴリーが指定されていません");
 	$page = $_POST['page'];
@@ -160,12 +162,12 @@ if ($kakunin != 1) {
 ?>
 <html>
 <head>
-<meta http-equiv="refresh" content="0; url=<?=$referer0?>">
+<meta http-equiv="refresh" content="0; url='<?=$referer0?>'">
 <title>表<?= $category ?>-<?= $page ?>:jump</title>
 </head>
 <body>
 <p>編集しました。</p>
-<a href="griddata_list.php">一覧に戻る</a>
+<a href=<?=$referer0?>>一覧に戻る</a>
 </body>
 </html>
 <?PHP
