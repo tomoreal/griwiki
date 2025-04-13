@@ -1,0 +1,60 @@
+griddataインストール方法
+
+1.postgresqlのデータベースを作成する。
+ユーザー名、データベース名、パスワードは任意です。
+
+2.データベースコネクション用phpを作成する。
+ファイル名：griddata_dbcon.php
+中身を下記で、hogehoge部分を1で作成したデータベースに即して入れる。
+<?php
+$con = pg_connect("dbname=hogehoge user=hogehogepassword=hogehoge");
+?>
+
+また、テーブル名を適宜変更する。
+
+3.配布ファイルと上記で作成したgriddata_dbcon.phpをサーバーに設置する。
+
+4.テーブルを3つ作成する。
+
+install.phpにアクセスする。
+2で定義した、テーブルが3つ自動的に作られる。
+
+手動で作る場合は、下記を参考に作る。
+
+CREATE TABLE gridcategory (
+    "no" serial NOT NULL,
+    category integer NOT NULL,
+    max_yoko integer NOT NULL,
+    max_tate integer NOT NULL,
+    max_page integer,
+    title text,
+    "owner" text,
+    "time" timestamp without time zone,
+    passwd text
+);
+
+CREATE TABLE griddata (
+    "no" serial NOT NULL,
+    category integer NOT NULL,
+    page integer NOT NULL,
+    yoko integer NOT NULL,
+    tate integer NOT NULL,
+    "owner" text,
+    content text,
+    "time" timestamp without time zone
+);
+
+CREATE TABLE gridback (
+    "no" serial NOT NULL,
+    category integer NOT NULL,
+    page integer NOT NULL,
+    yoko integer NOT NULL,
+    tate integer NOT NULL,
+    "owner" text,
+    content text,
+    "time" timestamp without time zone
+);
+
+5.
+設置した、griddata_admin.phpにアクセスし、テーマを設定する。
+
