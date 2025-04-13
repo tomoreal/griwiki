@@ -1,4 +1,4 @@
-<!--
+// GriWiki JavaScript
 /*
 function pageBack(){
     history.back();
@@ -11,20 +11,22 @@ function updateform(id, upid, oldstr)
     document.getElementById('input2' ).focus();
 }
 */
-function textareazoom(){
-	var f=document.forms,i,j;
-	for(i=0;i<f.length;i++){
-		e=f[i].elements;
-		for(j=0;j<e.length;j++){
-			if(e[j].type.match("textarea")){
-				e[j].rows*=2;
-				e[j].cols*=1.5;
-			}
-		}
+function textareazoom() {
+	var textarea = document.getElementById("content");
+	if (textarea) {
+	  textarea.rows *= 2;
+	  textarea.cols = Math.round(textarea.cols * 1.5);
+  
+	  // 高さ・幅も変更（ここがポイント！）
+	  textarea.style.height = (textarea.rows * 20) + "px";
+	  textarea.style.width = "100%"; // もしくは動的に調整したければ以下のように
+	  // textarea.style.width = (textarea.cols * 8) + "px";
+  
+	  textarea.focus();
 	}
-	document.f_edit.content.focus();
 	return false;
-}
+  }
+
 function table_trance(){
 	var d=document,q="table",i,j,k,y,r,c,t;
 //	for(i=0;t=d.getElementsByTagName(q)[i];++i){
@@ -123,7 +125,7 @@ function HandleKeyDown(obj)
 function changeURL() {
 	var doc = document.getElementsByTagName("td");
 	var sHTML;
-	var regURL = new RegExp("(s?https?://[-_.!〜*'()a-zA-Z0-9;/?:@&=+$,%#]+)","g");
+	var regURL = new RegExp("(s?https?://[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)","g");
 	for(var i=0 ; i<doc.length ; i++){
 		sHTML = doc[i].innerHTML;
 		doc[i].innerHTML = sHTML.replace(regURL,'<a href="$1" target="_blank">$1</a>');
