@@ -402,6 +402,7 @@ if ($conf_mode == "update") {
 <button onClick="return add_date()">日</button>
 <button onClick="return add_time()">時</button>
 <button onClick="return add_kigou('○')">○</button>
+<button onClick="return add_kigou('−')">−</button>
 <button onClick="return add_kigou('×')">×</button>
 <button onClick="return textareazoom()">拡大</button>
 <input type="reset" name="conf_mode" value="reset"><br>
@@ -410,7 +411,7 @@ if ($conf_mode == "update") {
 <?php
 		}
 		elseif ($mode == "plane") {
-			$regURL = "(https?://[-_.!〜*'()a-zA-Z0-9;/?:@&=+$,%#]+)";
+			$regURL = "(https?://[-_.!?*'()a-zA-Z0-9;/?:@&=+$,%#]+)";
 			$regHTML = eregi_replace($regURL,'<a href="\1" target="_blank">\1</a>',get_form($cell_data_out));
 			$regHTML = eregi_replace('</a><BR>','</a>',$regHTML);
 			print "<td bgcolor=\"{$timediff_color[$j][$i][$page]}\"><div class=\"{$place}\">" . $regHTML . "</div></td>\n";
@@ -481,19 +482,19 @@ if ($mode == "edit") {
 <tr>
 <td>更新色凡例</td>
 <td>
-<div class="orange" align="center"><?= round($timediff_second/60) ?>分以内<br>〜<?= date("H:i",time() - round($timediff_second/60)*60)?></div>
+<div class="orange" align="center"><?= round($timediff_second/60) ?>分以内<br>~<?= date("H:i",time() - round($timediff_second/60)*60)?></div>
 </td>
 <td>
-<div class="gold" align="center">60分以内<br>〜<?= date("H:i",time() - 60*60)?></div>
+<div class="gold" align="center">60分以内<br>~<?= date("H:i",time() - 60*60)?></div>
 </td>
 <td>
-<div class="peachpuff" align="center">12時間以内<br>〜<?= date("m/d H:i",time() - 12*60*60)?></div>
+<div class="peachpuff" align="center">12時間以内<br>~<?= date("m/d H:i",time() - 12*60*60)?></div>
 </td>
 <td>
-<div class="lavenderblush" align="center">24時間以内<br>〜<?= date("m/d H:i",time() - 24*60*60)?></div>
+<div class="lavenderblush" align="center">24時間以内<br>~<?= date("m/d H:i",time() - 24*60*60)?></div>
 </td>
 <td>
-<div class="mintcream" align="center">1週間以内<br>〜<?= date("m/d H:i",time() - 7*24*60*60)?></div>
+<div class="mintcream" align="center">1週間以内<br>~<?= date("m/d H:i",time() - 7*24*60*60)?></div>
 </td>
 <td><div class="skyblue" align="center">マスター<br>(上書き可)</div>
 </td></tr>
